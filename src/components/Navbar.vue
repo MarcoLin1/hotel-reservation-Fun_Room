@@ -120,4 +120,36 @@
   }
 }
 
+@media screen and (min-width: 756px) {
+  .navbar {
+    &__container {
+      display: grid;
+      grid-template-columns: 150px auto repeat(6, auto);
+    }
+    &__toggle__hamburger {
+      display: none;
+    }
+    &__brand {
+      grid-column: 1 / 3;
+    }
+    &__wrapper {
+      all: unset;
+      opacity: 1;
+      grid-column: 3 / 8;
+    }
+    &__item {
+      opacity: 1;
+      margin: 0;
+    }
+    &__list {
+      height: 100%;
+      display: grid;
+      grid-auto-flow: column;
+      align-items: center;
+      justify-content: end;
+      grid-gap: 1rem;
+      word-wrap:break-word;
+    }
+  }
+}
 </style>
