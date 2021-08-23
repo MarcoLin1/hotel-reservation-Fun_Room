@@ -1,7 +1,12 @@
 <template>
   <div class="room__container">
+    <Navbar />
     <div class="room__image__wrapper">
-      <Navbar />
+      <div class="room__image__left"></div>
+      <div class="room__image__right">
+        <div class="room__image__right__top"></div>
+        <div class="room__image__right__bottom"></div>
+      </div>
     </div>
     <div class="room__information__item">
       <router-link to="/room/detail" class="room__information__link">
@@ -33,7 +38,7 @@ export default {
 
 <style lang="scss" scoped>
 .room {
-  &__image__wrapper {
+  &__image__left {
     background-image: url('./../assets/image/homePage.jpg');
     background-position: center;
     background-size: cover;
@@ -60,6 +65,38 @@ export default {
   &__information__link {
     text-decoration: none;
     color: #000000;
+  }
+}
+
+@media screen and (min-width: 756px) {
+  .room {
+    &__image__wrapper {
+      display: grid;
+      grid-template-columns: 1fr 0.6fr;
+      grid-gap: 1rem;
+      padding: 0 10px;
+    }
+    &__image__left {
+      width: 100%;
+      height: 100%;
+    }
+    &__image__right {
+      width: 100%;
+    }
+    &__image__right__top, &__image__right__bottom {
+      background-image: url('./../assets/image/homePage.jpg');
+      background-position: center;
+      background-size: cover;
+      width: 100%;
+      height: 250px;
+      position: relative;
+    }
+    &__image__right__bottom {
+      margin-top: 1rem;
+    }
+    &__information__item {
+      display: none;
+    }
   }
 }
 </style>
