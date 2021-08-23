@@ -178,7 +178,10 @@ export default {
       color: #BBBBBB;
     }
   }
-  // .calendar__week__day>div {
 
-  // }
+@media screen and (min-width: 756px) {
+  .calendar__container {
+    display: none;
+  }
+}
 </style>
