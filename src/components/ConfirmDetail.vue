@@ -1,85 +1,99 @@
 <template>
   <div class="confirm__container">
     <div class="confirm__inner__container">
-      <div class="confirm__wrapper">
-        <div class="confirm__title">確認訂房資訊</div>
-        <div class="confirm__items__wrapper">
-          <div class="confirm__item">
-            <div class="confirm__item__subject">房型</div>
-            <div class="confirm__item__description">Deluxe Single Room (豪華單人房)</div>
-          </div>
-          <div class="confirm__item">
-            <div class="confirm__item__subject">預訂人</div>
-            <div class="confirm__item__description">Marco Lin</div>
-          </div>
-          <div class="confirm__item">
-            <div class="confirm__item__subject">聯絡電話</div>
-            <div class="confirm__item__description">0978196422</div>
-          </div>
-          <div class="confirm__item">
-            <div class="confirm__item__subject">E-mail</div>
-            <div class="confirm__item__description">marcoLin@example.com</div>
-          </div>
-          <div class="confirm__item">
-            <div class="confirm__item__subject">預訂日期</div>
-            <div class="confirm__item__description confirm__item__date">2021/05/22 - 2021/05/23</div>
-          </div>
-        </div>
-      </div>
-      <div class="amount__container">
-        <div class="amount__item amount__item__top">
-          <div class="amount__title">小計</div>
-          <div class="amount__inner__wrapper">
-            <div class="amount__inner__item">
-              <span class="amount__inner__text">平日</span>
-              <span class="amount__inner__date">2夜</span>
+      <div class="confirm__inner__wrapper" v-if="isFinished">
+        <div class="confirm__wrapper" >
+          <div class="confirm__title">確認訂房資訊</div>
+          <div class="confirm__items__wrapper">
+            <div class="confirm__item">
+              <div class="confirm__item__subject">房型</div>
+              <div class="confirm__item__description">Deluxe Single Room (豪華單人房)</div>
             </div>
-            <div class="amount__inner__item">
-              <span class="amount__inner__text">假日</span>
-              <span class="amount__inner__date">0夜</span>
+            <div class="confirm__item">
+              <div class="confirm__item__subject">預訂人</div>
+              <div class="confirm__item__description">Marco Lin</div>
+            </div>
+            <div class="confirm__item">
+              <div class="confirm__item__subject">聯絡電話</div>
+              <div class="confirm__item__description">0978196422</div>
+            </div>
+            <div class="confirm__item">
+              <div class="confirm__item__subject">E-mail</div>
+              <div class="confirm__item__description">marcoLin@example.com</div>
+            </div>
+            <div class="confirm__item">
+              <div class="confirm__item__subject">預訂日期</div>
+              <div class="confirm__item__description confirm__item__date">2021/05/22 - 2021/05/23</div>
             </div>
           </div>
         </div>
-        <div class="amount__item">
-          <div class="amount__title">消費金額</div>
-          <div class="amount__price">$5,400</div>
-        </div>
-        <div class="amount__buttons__wrapper">
-          <div class="amount__button__left__wrapper" @click.stop.prevent="$router.go(-1)">
-            <button class="amount__button">修改資料</button>
+        <div class="amount__container">
+          <div class="amount__item amount__item__top">
+            <div class="amount__title">小計</div>
+            <div class="amount__inner__wrapper">
+              <div class="amount__inner__item">
+                <span class="amount__inner__text">平日</span>
+                <span class="amount__inner__date">2夜</span>
+              </div>
+              <div class="amount__inner__item">
+                <span class="amount__inner__text">假日</span>
+                <span class="amount__inner__date">0夜</span>
+              </div>
+            </div>
           </div>
-          <div class="amount__button__right__wrapper">
-            <button class="amount__button amount__button__text">確認預訂</button>
+          <div class="amount__item">
+            <div class="amount__title">消費金額</div>
+            <div class="amount__price">$5,400</div>
+          </div>
+          <div class="amount__buttons__wrapper">
+            <div class="amount__button__left__wrapper" @click.stop.prevent="$router.go(-1)">
+              <button class="amount__button">修改資料</button>
+            </div>
+            <div class="amount__button__right__wrapper" @click.stop.prevent="toggleComplete">
+              <label class="amount__button amount__button__text" for="amount__checkbox">確認預訂</label>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="confirm__cancel__wrapper" @click.stop.prevent="$router.go(-1)">
-      <div class="confirm__cancel">X</div>
+      <CompleteOrder />
+      <router-link class="confirm__cancel__wrapper" to="/" @click.stop.prevent="">
+        <div class="confirm__cancel">X</div>
+      </router-link>
     </div>
   </div>
 </template>
 
 <script>
+import CompleteOrder from './../components/CompleteOrder.vue'
+import { mapState } from 'vuex'
 export default {
   components: {
-
+    CompleteOrder
+  },
+  computed: {
+    ...mapState(['isFinished'])
   },
   methods: {
+    toggleComplete () {
+      this.$store.commit('toggleToComplete')
+    },
+    toggleToUncomplete () {
+      this.$store.commit('toggleToUncompleted')
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
 .confirm {
-  &__container {
+  &__inner__container {
     background-color: #E5E5E5;
     width: 100%;
     height: 100vh;
     position: relative;
-    padding-bottom: 40px;
+    // padding-bottom: 40px;
   }
-  &__inner__container {
+  &__inner__wrapper {
     position: relative;
     height: 100%;
   }
@@ -132,7 +146,7 @@ export default {
 .amount {
   &__container {
     position: relative;
-    bottom: -30%;
+    bottom: -25%;
     width: 100%;
     max-width: 330px;
     margin: 0 auto;
@@ -175,7 +189,7 @@ export default {
   }
   &__button__left__wrapper, &__button__right__wrapper {
     height: 40px;
-    border: 1px solid;
+    // border: 1px solid;
     width: 100%;
     text-align: center;
     cursor: pointer;
@@ -191,20 +205,21 @@ export default {
   }
   &__button__text {
     color: #ffffff;
+    font-size: 14px;
   }
 }
 
 @media screen and (min-width: 756px) {
   .confirm {
-    &__container {
+    &__inner__container {
       background: rgba(0, 0, 0, 0.78);
       backdrop-filter: blur(14px);
-      padding: 60px 0;
+      padding: 80px 0 60px 0;
       display: flex;
       justify-content: center;
       height: auto;
     }
-    &__inner__container {
+    &__inner__wrapper {
       width: 100%;
       height: 100%;
       max-width: 700px;
@@ -229,6 +244,8 @@ export default {
       text-align: center;
       margin-left: 10px;
       cursor: pointer;
+      text-decoration: none;
+      color: #000;
     }
     &__cancel {
       line-height: 40px;
@@ -238,6 +255,9 @@ export default {
     &__container {
       max-width: 589px;
       bottom: -18%;
+    }
+    &__button__left__wrapper {
+      outline: 1px solid;
     }
   }
 }

@@ -1,6 +1,6 @@
 <template>
   <div class="confirm__page__container">
-    <Navbar v-if="false"/>
+    <Navbar/>
     <ConfirmDetail />
   </div>
 </template>
