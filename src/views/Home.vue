@@ -25,7 +25,9 @@
         </div>
         <div class="home__page__order__item home__page__order__item__last">
           <div class="home__page__order__price">$3,350</div>
-          <div class="home__page__order__button__wrapper"><router-link to="/order" class="home__page__order__button">線上訂房</router-link></div>
+          <div class="home__page__order__button__wrapper">
+            <router-link to="/room" class="home__page__order__button">線上訂房</router-link>
+          </div>
         </div>
       </div>
   </div>

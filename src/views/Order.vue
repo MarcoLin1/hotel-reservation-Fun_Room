@@ -370,6 +370,9 @@ export default {
         max-width: 530px;
         margin: 0 auto;
       }
+      &__title {
+        padding-top: 15px;
+      }
       &__time__container {
         padding-bottom: 30px;
       }

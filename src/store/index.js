@@ -7,7 +7,7 @@ export default new Vuex.Store({
   state: {
     isChecked: true,
     orderViewIsChecked: false,
-    showContent: false
+    showContent: true
   },
   mutations: {
     toggleChecked (state) {
