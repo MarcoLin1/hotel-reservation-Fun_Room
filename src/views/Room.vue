@@ -1,14 +1,14 @@
 <template>
   <div class="room__container">
     <Navbar />
-    <div class="room__image__wrapper">
+    <div class="room__image__wrapper" v-if="showContent">
       <div class="room__image__left"></div>
       <div class="room__image__right">
         <div class="room__image__right__top"></div>
         <div class="room__image__right__bottom"></div>
       </div>
     </div>
-    <div class="room__information__item">
+    <div class="room__information__item" v-if="showContent">
       <router-link to="/room/detail" class="room__information__link">
         <div class="room__information__button">
           房間介紹
@@ -21,17 +21,24 @@
       </router-link>
     </div>
     <RoomDetail />
+    <Order />
   </div>
 </template>
 
 <script>
 import Navbar from './../components/Navbar.vue'
 import RoomDetail from './../components/RoomDetail.vue'
+import Order from './../views/Order.vue'
+import { mapState } from 'vuex'
 export default {
   name: 'Room',
   components: {
     Navbar,
-    RoomDetail
+    RoomDetail,
+    Order
+  },
+  computed: {
+    ...mapState(['showContent'])
   }
 }
 </script>

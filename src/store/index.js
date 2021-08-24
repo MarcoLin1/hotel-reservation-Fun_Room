@@ -5,7 +5,9 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    isChecked: true
+    isChecked: true,
+    orderViewIsChecked: false,
+    showContent: false
   },
   mutations: {
     toggleChecked (state) {
@@ -13,6 +15,14 @@ export default new Vuex.Store({
     },
     toggleNonChecked (state) {
       state.isChecked = false
+    },
+    toggleOrderView (state) {
+      state.orderViewIsChecked = true
+      state.showContent = false
+    },
+    toggleOrderNonView (state) {
+      state.orderViewIsChecked = false
+      state.showContent = true
     }
   },
   actions: {

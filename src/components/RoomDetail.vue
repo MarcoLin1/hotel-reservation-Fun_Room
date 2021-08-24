@@ -1,6 +1,6 @@
 <template>
   <div class="room__detail__wrapper">
-    <div class="room__detail__container">
+    <div class="room__detail__container" v-if="showContent">
       <div class="room__detail__top__wrapper">
         <div class="room__detail__main__wrapper">
           <div class="room__detail__name__wrapper">
@@ -69,11 +69,13 @@
         </div>
       </div>
       <Calendar />
-      <div class="room__detail__order__button">
-        <div class="room__detail__order__button__text">
-          預定房間
+      <template >
+        <div class="room__detail__order__button" @click="orderView">
+          <div class="room__detail__order__button__text">
+            預定房間
+          </div>
         </div>
-      </div>
+      </template>
     </div>
     <div class="room__detail__form__container">
       <div class="form__detail__title__wrapper">
@@ -117,8 +119,10 @@
             <input type="date" class="room__detail__time__input form__detail__input" id="check__out">
           </div>
         </div>
-        <div class="form__detail__button__wrapper">
-          <button class="form__detail__button">預訂房間</button>
+        <div class="form__detail__button__link">
+          <div class="form__detail__button__wrapper" @click.stop.prevent="orderView">
+            <button class="form__detail__button">預訂房間</button>
+          </div>
         </div>
       </form>
     </div>
@@ -127,6 +131,7 @@
 
 <script>
 import Calendar from './../components/Calendar.vue'
+import { mapState } from 'vuex'
 export default {
   name: 'RoomDetail',
   components: {
@@ -220,10 +225,16 @@ export default {
       ]
     }
   },
+  computed: {
+    ...mapState(['orderViewIsChecked', 'showContent'])
+  },
   created () {
 
   },
   methods: {
+    orderView () {
+      this.$store.commit('toggleOrderView')
+    }
   }
 }
 </script>
@@ -439,6 +450,9 @@ export default {
       background-color: #000;
       text-align: center;
       cursor: pointer;
+    }
+    &__button__link {
+      width: 100%;
     }
     &__button {
       color: #fff;
