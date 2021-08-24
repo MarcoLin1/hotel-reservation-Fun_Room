@@ -104,10 +104,12 @@
           <div class="amount__title">消費金額</div>
           <div class="amount__price">$5,400</div>
         </div>
-        <div class="order__button__wrapper">
-          <button class="order__button">預訂房間</button>
-        </div>
-        <div class="order__button__wrapper" @click.stop.prevent="cancelOrder">
+        <router-link to="/confirm">
+          <div class="order__button__wrapper">
+            <button class="order__button">預訂房間</button>
+          </div>
+        </router-link>
+        <div class="order__button__wrapper order__cancel__button__wrapper" @click.stop.prevent="cancelOrder">
           <button class="order__button">取消</button>
         </div>
       </div>
@@ -445,6 +447,9 @@ export default {
       display: block;
       margin-left: 20px;
       cursor: pointer;
+    }
+    .order__cancel__button__wrapper {
+      display: none;
     }
     .order__cancel {
       background-color: #ffffff;

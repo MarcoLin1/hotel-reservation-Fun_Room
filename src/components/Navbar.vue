@@ -46,6 +46,7 @@ export default {
     height: 100%;
     height: 57px;
     background-color: rgba(255, 255, 255, 0.62);
+    backdrop-filter: blur(10px);
   }
   &__wrapper {
     position: absolute;
