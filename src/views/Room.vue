@@ -20,21 +20,19 @@
         </div>
       </router-link>
     </div>
-    <RoomDetail />
+    <router-view></router-view>
     <Order />
   </div>
 </template>
 
 <script>
 import Navbar from './../components/Navbar.vue'
-import RoomDetail from './../components/RoomDetail.vue'
 import Order from './../views/Order.vue'
 import { mapState } from 'vuex'
 export default {
   name: 'Room',
   components: {
     Navbar,
-    RoomDetail,
     Order
   },
   computed: {
