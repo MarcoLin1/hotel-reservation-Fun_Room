@@ -187,7 +187,7 @@ export default {
       height: 40px;
       width: 100%;
       border: none;
-      padding: 0;
+      padding-left: 5px;
       background: #EDEDED;
     }
     &__time__container {
@@ -226,6 +226,7 @@ export default {
       width: 100%;
       max-width: 199px;
       height: 40px;
+      cursor: pointer;
     }
     &__item__top {
       background-color: #000;
@@ -274,6 +275,7 @@ export default {
       background-color: #EDEDED;
       height: 40px;
       width: 100%;
+      padding-left: 5px;
     }
     &__item__credit__card__input__wrapper {
       display: grid;
@@ -290,11 +292,18 @@ export default {
       grid-template-columns: repeat(2, 1fr);
       grid-gap: 10px;
     }
+    &__item__sign__input {
+      height: 38px;
+    }
     &__item__month, &__item__year {
       height: 40px;
       border: none;
       background-color: #EDEDED;
       color: #CACACA;
+      padding-left: 5px;
+      &:focus {
+        color: #000;
+      }
     }
   }
   .amount {

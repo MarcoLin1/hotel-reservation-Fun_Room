@@ -15,7 +15,7 @@
           <div class="room__detail__price__wrapper">
             <div class="room__detail__price__item">
               <div class="room__detail__price__title">平日(週一 ~ 四)</div>
-              <div class="room__detail__price">$2,888<span class="room__detail__date">/日</span></div>
+              <div class="room__detail__price">$2,700<span class="room__detail__date">/日</span></div>
             </div>
             <div class="room__detail__price__item">
               <div class="room__detail__price__title">假日(週五 ~ 日)</div>
@@ -84,7 +84,7 @@
             平日(週一 ~ 四)
           </div>
           <div class="form__detail__price">
-            $2,888/日
+            $2,700/日
           </div>
         </div>
         <div class="form__detail__title__item">
@@ -98,24 +98,34 @@
       </div>
       <form action="" class="room__detail__form__wrapper">
         <div class="form__detail__item">
-          <label for="form__detail__name__input" class="form__detail__name room__detail__label">姓名</label>
+          <label for="form__detail__name__input" class="form__detail__name room__detail__label">
+            姓名
+          </label>
           <input type="text" class="form__detail__name__input form__detail__input" id="form__detail__name__input">
         </div>
         <div class="form__detail__item">
-          <label for="room__detail__phone__input" class="room__detail__phone room__detail__label">聯絡電話</label>
+          <label for="room__detail__phone__input" class="room__detail__phone room__detail__label">
+            聯絡電話
+          </label>
           <input type="text" class="room__detail__phone__input form__detail__input" id="room__detail__phone__input">
         </div>
         <div class="form__detail__item">
-          <label for="room__detail__email__input" class="room__detail__email room__detail__label">E-mail</label>
+          <label for="room__detail__email__input" class="room__detail__email room__detail__label">
+            E-mail
+          </label>
           <input type="text" class="room__detail__email__input form__detail__input" id="room__detail__email__input">
         </div>
         <div class="form__detail__item form__detail__time__container">
           <div class="form__detail__time__wrapper">
-            <label for="check__in" class="room__detail__time__title room__detail__label">入住時間</label>
+            <label for="check__in" class="room__detail__time__title room__detail__label">
+              入住時間
+            </label>
             <input type="date" class="room__detail__time__input form__detail__input" id="check__in">
           </div>
           <div class="form__detail__time__wrapper">
-            <label for="check__out" class="room__detail__time__title room__detail__label">退房時間</label>
+            <label for="check__out" class="room__detail__time__title room__detail__label">
+              退房時間
+            </label>
             <input type="date" class="room__detail__time__input form__detail__input" id="check__out">
           </div>
         </div>
@@ -367,6 +377,8 @@ export default {
     }
     &__wrapper {
       display: flex;
+      width: 95%;
+      margin: 0 auto;
     }
     &__container {
       width: 100%;
@@ -444,6 +456,7 @@ export default {
       width: 100%;
       border: none;
       background-color: #EDEDED;
+      padding-left: 5px;
     }
     &__time__container {
       display: grid;

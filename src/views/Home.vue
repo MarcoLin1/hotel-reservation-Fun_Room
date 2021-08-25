@@ -15,18 +15,18 @@
       </div>
       <div class="home__page__order__container">
         <div class="home__page__order__item">
-          <div class="home__page__order__number">05</div>
+          <div class="home__page__order__number">01</div>
         </div>
         <div class="home__page__order__item">
-          <div class="home__page__order__room">Twim Room</div>
+          <div class="home__page__order__room">Single Room</div>
         </div>
         <div class="home__page__order__item">
           <div class="home__page__order__description">潔淨白色極簡主義, 恣意享受舒適與自在, 身心靈極致美好的享受</div>
         </div>
         <div class="home__page__order__item home__page__order__item__last">
-          <div class="home__page__order__price">$3,350</div>
+          <div class="home__page__order__price">$2,700</div>
           <div class="home__page__order__button__wrapper">
-            <router-link to="/room" class="home__page__order__button">線上訂房</router-link>
+            <router-link to="/room/detail" class="home__page__order__button">線上訂房</router-link>
           </div>
         </div>
       </div>

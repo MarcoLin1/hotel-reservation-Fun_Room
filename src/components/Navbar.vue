@@ -1,7 +1,7 @@
 <template>
 <div class="nav__container">
   <div class="navbar__container">
-    <a href="#" class="navbar__brand">Fun Room</a>
+    <a href="/" class="navbar__brand">Fun Room</a>
     <input type="checkbox" class="navbar__toggle" id="navbar__toggle">
     <!-- 增加標籤 -->
     <label for="navbar__toggle" class="navbar__toggle__hamburger" @click="toggleEvent">
@@ -9,12 +9,24 @@
     </label>
     <div class="navbar__wrapper">
       <ul class="navbar__list">
-        <li class="navbar__item"><a href="#" class="navbar__link">Single Room</a></li>
-        <li class="navbar__item"><a href="#" class="navbar__link">Deluxe Single Room</a></li>
-        <li class="navbar__item"><a href="#" class="navbar__link">Double Room</a></li>
-        <li class="navbar__item"><a href="#" class="navbar__link">Deluxe Double Room</a></li>
-        <li class="navbar__item"><a href="#" class="navbar__link">Twin Room</a></li>
-        <li class="navbar__item"><a href="#" class="navbar__link">Deluxe Twin Room</a></li>
+        <li class="navbar__item">
+          <a href="/room/detail" class="navbar__link">Single Room</a>
+        </li>
+        <li class="navbar__item">
+          <a href="/room/detail" class="navbar__link">Deluxe Single Room</a>
+        </li>
+        <li class="navbar__item">
+          <a href="/room/detail" class="navbar__link">Double Room</a>
+        </li>
+        <li class="navbar__item">
+          <a href="/room/detail" class="navbar__link">Deluxe Double Room</a>
+        </li>
+        <li class="navbar__item">
+          <a href="/room/detail" class="navbar__link">Twin Room</a>
+        </li>
+        <li class="navbar__item">
+          <a href="/room/detail" class="navbar__link">Deluxe Twin Room</a>
+        </li>
       </ul>
     </div>
   </div>

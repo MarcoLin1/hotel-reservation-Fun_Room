@@ -19,7 +19,7 @@ export default {
   methods: {
     moveToFirstPage () {
       this.$store.commit('toggleToUncompleted')
-      this.$router.push({ name: 'Home' })
+      this.$router.push({ name: 'home' })
     }
   }
 }
@@ -63,6 +63,7 @@ export default {
       text-align: center;
       line-height: 40px;
       margin-top: 25px;
+      cursor: pointer;
     }
   }
   @media screen and (min-width: 756px) {
@@ -71,7 +72,7 @@ export default {
         background: transparent;
         backdrop-filter: none;
         width: 70%;
-        // max-width: 794px;
+        max-width: 700px;
       }
       &__wrapper {
         top: 0;
