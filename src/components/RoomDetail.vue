@@ -6,7 +6,7 @@
           <div class="room__detail__name__wrapper">
             <div class="room__detail__name">Deluxe Double Room</div>
             <div class="room__detail__comments__wrapper">
-              <div class="room__detail__comment">房客評價(128)</div>
+              <router-link  to="/room/review" class="room__detail__comment">房客評價(128)</router-link>
               <div class="room__detail__comment__icons__wrapper">
                 <img :src="star.image" alt="" class="room__detail__comment__icon" v-for="star in commentIcons" :key="star.id">
               </div>
@@ -370,6 +370,7 @@ export default {
     }
     &__container {
       width: 100%;
+      padding: 0;
     }
     &__price__wrapper {
       display: none;
@@ -400,7 +401,16 @@ export default {
     }
     &__name__wrapper {
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-start;
+    }
+    &__name {
+      margin-right: 15px;
+    }
+    &__comments__wrapper {
+      display: block;
+    }
+    &__comment {
+      color: #000;
     }
   }
   .form__detail {
