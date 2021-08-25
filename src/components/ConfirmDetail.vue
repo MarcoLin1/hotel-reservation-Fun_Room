@@ -91,7 +91,6 @@ export default {
     width: 100%;
     height: 100vh;
     position: relative;
-    // padding-bottom: 40px;
   }
   &__inner__wrapper {
     position: relative;
@@ -211,20 +210,23 @@ export default {
 
 @media screen and (min-width: 756px) {
   .confirm {
+    &__container {
+      height: 100%;
+    }
     &__inner__container {
       background: rgba(0, 0, 0, 0.78);
       backdrop-filter: blur(14px);
       padding: 80px 0 60px 0;
       display: flex;
       justify-content: center;
-      height: auto;
+      height: 100vh;
     }
     &__inner__wrapper {
       width: 100%;
       height: 100%;
       max-width: 700px;
+      max-height: 550px;
       background-color: #f5f5f5;
-      // margin: 0 auto;
       padding: 50px 0;
     }
     &__title {
