@@ -7,7 +7,7 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/room',
-    name: 'Room',
+    name: 'room',
     component: () => import('./../views/Room.vue'),
     children: [
       {
@@ -17,24 +17,29 @@ const routes = [
       },
       {
         path: 'review',
-        name: 'Review',
+        name: 'room-review',
         component: () => import('./../components/Review.vue')
+      },
+      {
+        path: 'comment',
+        name: 'room-comment',
+        component: () => import('./../components/Comment.vue')
       }
     ]
   },
   {
     path: '/confirm',
-    name: 'Confirm',
+    name: 'confirm',
     component: () => import('./../views/Confirm.vue')
   },
   {
     path: '/confirm/complete',
-    name: 'Complete',
+    name: 'complete',
     component: () => import('./../components/CompleteOrder.vue')
   },
   {
     path: '/',
-    name: 'Home',
+    name: 'home',
     component: Home
   }
 ]

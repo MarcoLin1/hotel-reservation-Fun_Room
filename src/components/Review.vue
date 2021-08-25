@@ -1,7 +1,9 @@
 <template>
   <div class="review__wrapper">
     <div class="review__container">
-      <div class="review__comment__link">+ 我要給評</div>
+      <router-link to="/room/comment"  class="review__comment__link">
+        <div class="revire__comment__link__text">+ 我要給評</div>
+      </router-link>
       <div class="reivew__comment__wrapper">
         <div class="review__comment__item" v-for="comment in commentAccount" :key="comment.id">
           <div class="review__comment__item__top">
@@ -59,7 +61,6 @@ export default {
 <style lang="scss" scoped>
   .review {
     &__container {
-      // outline: 2px solid;
       width: 100%;
       max-width: 500px;
       margin: 0 auto;
@@ -69,6 +70,7 @@ export default {
       text-align: right;
       line-height: 34px;
       font-weight: 400;
+      color: #000;
     }
   }
   .review__comment {
@@ -135,6 +137,7 @@ export default {
       }
       &__cancel {
         line-height: 40px;
+        cursor: pointer;
       }
     }
   }
