@@ -10,22 +10,22 @@
     <div class="navbar__wrapper">
       <ul class="navbar__list">
         <li class="navbar__item">
-          <a href="/room/detail" class="navbar__link">Single Room</a>
+          <router-link to="/room/detail" class="navbar__link">Single Room</router-link>
         </li>
         <li class="navbar__item">
-          <a href="/room/detail" class="navbar__link">Deluxe Single Room</a>
+          <router-link to="/room/detail" class="navbar__link">Deluxe Single Room</router-link>
         </li>
         <li class="navbar__item">
-          <a href="/room/detail" class="navbar__link">Double Room</a>
+          <router-link to="/room/detail" class="navbar__link">Double Room</router-link>
         </li>
         <li class="navbar__item">
-          <a href="/room/detail" class="navbar__link">Deluxe Double Room</a>
+          <router-link to="/room/detail" class="navbar__link">Deluxe Double Room</router-link>
         </li>
         <li class="navbar__item">
-          <a href="/room/detail" class="navbar__link">Twin Room</a>
+          <router-link to="/room/detail" class="navbar__link">Twin Room</router-link>
         </li>
         <li class="navbar__item">
-          <a href="/room/detail" class="navbar__link">Deluxe Twin Room</a>
+          <router-link to="/room/detail" class="navbar__link">Deluxe Twin Room</router-link>
         </li>
       </ul>
     </div>
