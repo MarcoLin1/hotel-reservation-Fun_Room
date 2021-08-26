@@ -3,23 +3,28 @@
     <div class="comment__top__wrapper">
       <div class="comment__name__wrapper">
         <div class="comment__name__title">代號/姓名</div>
-        <input type="text" class="comment__name__input">
+        <input type="text" class="comment__name__input" v-model="name">
       </div>
       <div class="comment__icons__wrapper">
         <div class="comment__icon__wrapper">
-          <div class="comment__icon"></div>
+          <div class="comment__icon" @click="iconClick(1)" v-if="toggleIcon1"></div>
+          <div class="comment__icon__full" @click="iconClick(1)" v-else></div>
         </div>
         <div class="comment__icon__wrapper">
-          <div class="comment__icon"></div>
+          <div class="comment__icon" @click="iconClick(2)" v-if="toggleIcon2"></div>
+          <div class="comment__icon__full" @click="iconClick(2)" v-else></div>
         </div>
         <div class="comment__icon__wrapper">
-          <div class="comment__icon"></div>
+          <div class="comment__icon" @click="iconClick(3)" v-if="toggleIcon3"></div>
+          <div class="comment__icon__full" @click="iconClick(3)" v-else></div>
         </div>
         <div class="comment__icon__wrapper">
-          <div class="comment__icon"></div>
+          <div class="comment__icon" @click="iconClick(4)" v-if="toggleIcon4"></div>
+          <div class="comment__icon__full" @click="iconClick(4)" v-else></div>
         </div>
         <div class="comment__icon__wrapper">
-          <div class="comment__icon"></div>
+          <div class="comment__icon" @click="iconClick(5)" v-if="toggleIcon5"></div>
+          <div class="comment__icon__full" @click="iconClick(5)" v-else></div>
         </div>
       </div>
     </div>
@@ -32,23 +37,23 @@
     </div>
     <div class="comment__tags__wrapper">
       <div class="comment__tag__item">
-        <div class="comment__tag">服務讚</div>
+        <button class="comment__tag" @click.stop.prevent="buttonContent('服務讚')">服務讚</button>
       </div>
       <div class="comment__tag__item">
-        <div class="comment__tag">清潔讚</div>
+        <button class="comment__tag" @click.stop.prevent="buttonContent('清潔讚')">清潔讚</button>
       </div>
       <div class="comment__tag__item">
-        <div class="comment__tag">衛生讚</div>
+        <button class="comment__tag" @click.stop.prevent="buttonContent('衛生讚')">衛生讚</button>
       </div>
       <div class="comment__tag__item">
-        <div class="comment__tag">安全讚</div>
+        <button class="comment__tag" @click.stop.prevent="buttonContent('安全讚')">安全讚</button>
       </div>
       <div class="comment__tag__item">
-        <div class="comment__tag">設施讚</div>
+        <button class="comment__tag" @click.stop.prevent="buttonContent('設施讚')">設施讚</button>
       </div>
     </div>
     <div class="comment__button__wrapper">
-      <div class="comment__button">確定留評</div>
+      <button class="comment__button">確定留評</button>
     </div>
   </div>
 </template>
@@ -57,12 +62,40 @@
 export default {
   data () {
     return {
-      comment: ''
+      comment: '',
+      name: '',
+      toggleIcon1: true,
+      toggleIcon2: true,
+      toggleIcon3: true,
+      toggleIcon4: true,
+      toggleIcon5: true
     }
   },
   computed: {
     countNum: function () {
       return this.comment.length
+    }
+  },
+  methods: {
+    buttonContent (text) {
+      if (this.comment) {
+        this.comment = this.comment + ', ' + text
+      } else {
+        this.comment += text
+      }
+    },
+    iconClick (number) {
+      if (number === 1) {
+        this.toggleIcon1 = !this.toggleIcon1
+      } else if (number === 2) {
+        this.toggleIcon2 = !this.toggleIcon2
+      } else if (number === 3) {
+        this.toggleIcon3 = !this.toggleIcon3
+      } else if (number === 4) {
+        this.toggleIcon4 = !this.toggleIcon4
+      } else {
+        this.toggleIcon5 = !this.toggleIcon5
+      }
     }
   }
 }
@@ -98,23 +131,23 @@ export default {
       align-items: center;
       border-radius: 50%;
       padding: 2px;
-      &:hover {
-        background-color: #000;
-      }
     }
-    &__icon__wrapper:hover > &__icon {
-      background-color: #fff;
+    &__icon, &__icon__full {
+      background-repeat: no-repeat;
+      background-size: auto;
+      background-position: center;
+      width: 17px;
+      height: 17px;
+      background-color: #000;
+      cursor: pointer;
     }
     &__icon {
       mask-image: url('./../assets/image/star.svg');
       -webkit-mask-image: url('./../assets/image/star.svg');
-      background-repeat: no-repeat;
-      background-size: auto;
-      background-position: center;
-      width: 18px;
-      height: 18px;
-      background-color: #000;
-      color: green;
+    }
+    &__icon__full {
+      mask-image: url('./../assets/image/starFull.svg');
+      -webkit-mask-image: url('./../assets/image/starFull.svg');
     }
     &__name__title {
       line-height: 19px;
@@ -179,6 +212,9 @@ export default {
       line-height: 28px;
       &:hover {
         color: #fff;
+      }
+      &:focus {
+        font-weight: bold;
       }
     }
     &__button__wrapper {
