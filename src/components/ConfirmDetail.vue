@@ -7,23 +7,23 @@
           <div class="confirm__items__wrapper">
             <div class="confirm__item">
               <div class="confirm__item__subject">房型</div>
-              <div class="confirm__item__description">Deluxe Single Room (豪華單人房)</div>
+              <div class="confirm__item__description">{{bookingData.roomType}}</div>
             </div>
             <div class="confirm__item">
               <div class="confirm__item__subject">預訂人</div>
-              <div class="confirm__item__description">Marco Lin</div>
+              <div class="confirm__item__description">{{bookingData.name}}</div>
             </div>
             <div class="confirm__item">
               <div class="confirm__item__subject">聯絡電話</div>
-              <div class="confirm__item__description">0978196422</div>
+              <div class="confirm__item__description">{{bookingData.phone}}</div>
             </div>
             <div class="confirm__item">
               <div class="confirm__item__subject">E-mail</div>
-              <div class="confirm__item__description">marcoLin@example.com</div>
+              <div class="confirm__item__description">{{bookingData.email}}</div>
             </div>
             <div class="confirm__item">
               <div class="confirm__item__subject">預訂日期</div>
-              <div class="confirm__item__description confirm__item__date">2021/05/22 - 2021/05/23</div>
+              <div class="confirm__item__description confirm__item__date">{{bookingData.checkinDate}} ~ {{bookingData.checkoutDate}}</div>
             </div>
           </div>
         </div>
@@ -32,18 +32,18 @@
             <div class="amount__title">小計</div>
             <div class="amount__inner__wrapper">
               <div class="amount__inner__item">
-                <span class="amount__inner__text">平日</span>
-                <span class="amount__inner__date">2夜</span>
+                <span class="amount__inner__text">總共</span>
+                <span class="amount__inner__date">{{bookingData.countDate}}夜</span>
               </div>
-              <div class="amount__inner__item">
+              <!-- <div class="amount__inner__item">
                 <span class="amount__inner__text">假日</span>
                 <span class="amount__inner__date">0夜</span>
-              </div>
+              </div> -->
             </div>
           </div>
           <div class="amount__item">
             <div class="amount__title">消費金額</div>
-            <div class="amount__price">$5,400</div>
+            <div class="amount__price">{{bookingData.totalPrice}}</div>
           </div>
           <div class="amount__buttons__wrapper">
             <div class="amount__button__left__wrapper" @click.stop.prevent="$router.go(-1)">
@@ -71,7 +71,7 @@ export default {
     CompleteOrder
   },
   computed: {
-    ...mapState(['isFinished'])
+    ...mapState(['isFinished', 'bookingData'])
   },
   methods: {
     toggleComplete () {
@@ -188,7 +188,6 @@ export default {
   }
   &__button__left__wrapper, &__button__right__wrapper {
     height: 40px;
-    // border: 1px solid;
     width: 100%;
     text-align: center;
     cursor: pointer;
@@ -227,7 +226,6 @@ export default {
       max-width: 700px;
       max-height: 550px;
       background-color: #f5f5f5;
-      padding: 50px 0;
     }
     &__title {
       font-size: 36px;

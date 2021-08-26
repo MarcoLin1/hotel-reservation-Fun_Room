@@ -19,7 +19,7 @@
             </div>
             <div class="room__detail__price__item">
               <div class="room__detail__price__title">假日(週五 ~ 日)</div>
-              <div class="room__detail__price">$3,000<span class="room__detail__date">/日</span></div>
+              <div class="room__detail__price room__detail__price__holiday">$3,000<span class="room__detail__date">/日</span></div>
             </div>
           </div>
         </div>
@@ -91,7 +91,7 @@
           <div class="form__detail__price__title">
             假日(週五 ~ 日)
           </div>
-          <div class="form__detail__price">
+          <div class="form__detail__price form__detail__price__holiday">
             $3,000/日
           </div>
         </div>
@@ -101,32 +101,32 @@
           <label for="form__detail__name__input" class="form__detail__name room__detail__label">
             姓名
           </label>
-          <input type="text" class="form__detail__name__input form__detail__input" id="form__detail__name__input">
+          <input type="text" class="form__detail__name__input form__detail__input" id="form__detail__name__input" v-model="name">
         </div>
         <div class="form__detail__item">
           <label for="room__detail__phone__input" class="room__detail__phone room__detail__label">
             聯絡電話
           </label>
-          <input type="text" class="room__detail__phone__input form__detail__input" id="room__detail__phone__input">
+          <input type="text" class="room__detail__phone__input form__detail__input" id="room__detail__phone__input" v-model="phone">
         </div>
         <div class="form__detail__item">
           <label for="room__detail__email__input" class="room__detail__email room__detail__label">
             E-mail
           </label>
-          <input type="text" class="room__detail__email__input form__detail__input" id="room__detail__email__input">
+          <input type="text" class="room__detail__email__input form__detail__input" id="room__detail__email__input" v-model="email">
         </div>
         <div class="form__detail__item form__detail__time__container">
           <div class="form__detail__time__wrapper">
             <label for="check__in" class="room__detail__time__title room__detail__label">
               入住時間
             </label>
-            <input type="date" class="room__detail__time__input form__detail__input" id="check__in">
+            <input type="date" class="room__detail__time__input form__detail__input" id="check__in" v-model="checkinDate">
           </div>
           <div class="form__detail__time__wrapper">
             <label for="check__out" class="room__detail__time__title room__detail__label">
               退房時間
             </label>
-            <input type="date" class="room__detail__time__input form__detail__input" id="check__out">
+            <input type="date" class="room__detail__time__input form__detail__input" id="check__out" v-model="checkoutDate">
           </div>
         </div>
         <div class="form__detail__button__link">
@@ -232,7 +232,12 @@ export default {
           id: 5,
           image: require('./../assets/image/star.svg')
         }
-      ]
+      ],
+      name: '',
+      phone: '',
+      email: '',
+      checkinDate: '',
+      checkoutDate: ''
     }
   },
   computed: {
@@ -285,6 +290,10 @@ export default {
     font-weight: 500;
     font-size: 1rem;
     line-height: 21px;
+  }
+  &__price__holiday {
+    text-decoration: line-through;
+    color: rgb(155, 4, 4);
   }
   &__description {
     font-size: 14px;
@@ -443,6 +452,10 @@ export default {
       font-size: 36px;
       line-height: 36px;
       margin-bottom: 20px;
+    }
+    &__price__holiday {
+      text-decoration: line-through;
+      color: rgb(155, 4, 4);
     }
     &__item {
       width: 100%;

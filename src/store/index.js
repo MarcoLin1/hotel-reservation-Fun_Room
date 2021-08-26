@@ -9,7 +9,24 @@ export default new Vuex.Store({
     orderViewIsChecked: false,
     showContent: true,
     isCompleted: false,
-    isFinished: true
+    isFinished: true,
+    bookingData: {
+      name: '',
+      email: '',
+      phone: '',
+      checkinDate: '',
+      checkoutDate: '',
+      countDate: 0,
+      totalPrice: 0,
+      roomType: ''
+    }
+    // roomDetail: {
+    //   name: '',
+    //   email: '',
+    //   phone: '',
+    //   checkinDate: '',
+    //   checkoutDate: ''
+    // }
   },
   mutations: {
     toggleChecked (state) {
@@ -18,9 +35,10 @@ export default new Vuex.Store({
     toggleNonChecked (state) {
       state.isChecked = false
     },
-    toggleOrderView (state) {
+    toggleOrderView (state, data) {
       state.orderViewIsChecked = true
       state.showContent = false
+      // state.roomDetail = data
     },
     toggleOrderNonView (state) {
       state.orderViewIsChecked = false
@@ -33,8 +51,10 @@ export default new Vuex.Store({
     toggleToUncompleted (state) {
       state.isFinished = true
       state.isCompleted = false
+    },
+    afterBookingData (state, data) {
+      state.bookingData = data
     }
-
   },
   actions: {
   },

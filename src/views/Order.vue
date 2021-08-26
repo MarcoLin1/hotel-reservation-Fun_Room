@@ -5,35 +5,35 @@
         <div class="order__form__title">訂房資訊</div>
         <div class="order__form__item">
           <label for="order__form__room__type" class="order__form__room__type__title order__form__label">房型</label>
-          <select name="order__form__room__type" id="order__form__room__type" class="order__form__room__type">
-            <option value="1">Single Room (單人房)</option>
-            <option value="2">Deluxe Single Room (豪華單人房)</option>
-            <option value="3">Double Room (雙人房)</option>
-            <option value="4">Deluxe Double Room (豪華雙人房)</option>
-            <option value="5">Twin Room (雙床房)</option>
-            <option value="6">Deluxe Twin Romm (豪華雙床房)</option>
+          <select name="order__form__room__type" id="order__form__room__type" class="order__form__room__type" v-model="roomType">
+            <option value="Single Room (單人房)" selected>Single Room (單人房)</option>
+            <option value="Deluxe Single Room (豪華單人房)">Deluxe Single Room (豪華單人房)</option>
+            <option value="Double Room (雙人房)">Double Room (雙人房)</option>
+            <option value="Deluxe Double Room (豪華雙人房)">Deluxe Double Room (豪華雙人房)</option>
+            <option value="Twin Room (雙床房)">Twin Room (雙床房)</option>
+            <option value="Deluxe Twin Romm (豪華雙床房)">Deluxe Twin Romm (豪華雙床房)</option>
           </select>
         </div>
         <div class="order__form__item">
           <label for="order__form__name__input" class="order__form__name order__form__label">姓名</label>
-          <input type="text" class="order__form__name__input order__form__input" id="order__form__name__input">
+          <input type="text" class="order__form__name__input order__form__input" id="order__form__name__input" v-model="name">
         </div>
         <div class="order__form__item">
           <label for="order__form__phone__input" class="order__form__phone order__form__label">聯絡電話</label>
-          <input type="text" class="order__form__phone__input order__form__input" id="order__form__phone__input">
+          <input type="tel" class="order__form__phone__input order__form__input" id="order__form__phone__input" v-model="phone">
         </div>
         <div class="order__form__item">
           <label for="order__form__email__input" class="order__form__email order__form__label">E-mail</label>
-          <input type="text" class="order__form__email__input order__form__input" id="order__form__email__input">
+          <input type="email" class="order__form__email__input order__form__input" id="order__form__email__input" v-model="email">
         </div>
         <div class="order__form__item order__form__time__container">
           <div class="order__form__time__wrapper">
             <label for="check__in" class="order__form__time__title order__form__label">入住時間</label>
-            <input type="date" class="order__form__time__input order__form__input" id="check__in">
+            <input type="date" class="order__form__time__input order__form__input" v-model="checkinDate">
           </div>
           <div class="order__form__time__wrapper">
             <label for="check__out" class="order__form__time__title order__form__label">退房時間</label>
-            <input type="date" class="order__form__time__input order__form__input" id="check__out">
+            <input type="date" class="order__form__time__input order__form__input" v-model="checkoutDate">
           </div>
         </div>
       </form>
@@ -54,32 +54,32 @@
         <div class="payment__items__wrapper">
           <div class="payment__item payment__item__top">
             <label for="payment__item__name__input" class="payment__item__name__label payment__label">持卡人</label>
-            <input type="text" id="payment__item__name__input" class="payment__input">
+            <input type="text" id="payment__item__name__input" class="payment__input" v-model="creditCardName">
           </div>
           <div class="payment__item payment__item__middle">
             <label for="payment__item__credit__card__input" class="payment__item__credit__card__label payment__label">信用卡號碼</label>
             <div class="payment__item__credit__card__input__wrapper">
-              <input type="text" class="payment__item__credit__card__input payment__input" id="payment__item__credit__card__input">
-              <input type="text" class="payment__item__credit__card__input payment__input" id="payment__item__credit__card__input">
-              <input type="text" class="payment__item__credit__card__input payment__input" id="payment__item__credit__card__input">
-              <input type="text" class="payment__item__credit__card__input payment__input" id="payment__item__credit__card__input">
+              <input type="text" class="payment__item__credit__card__input payment__input" v-model="creditNumber1">
+              <input type="text" class="payment__item__credit__card__input payment__input" v-model="creditNumber2">
+              <input type="text" class="payment__item__credit__card__input payment__input" v-model="creditNumber3">
+              <input type="text" class="payment__item__credit__card__input payment__input" v-model="creditNumber4">
             </div>
           </div>
           <div class="payment__item payment__item__bottom">
             <div class="payment__item__inner__wrapper">
               <label for="payment__item__sign__input" class="payment__sign__label payment__label">簽名欄位末三碼(CVV)</label>
-              <input type="text" class="payment__item__sign__input payment__input">
+              <input type="text" class="payment__item__sign__input payment__input" v-model="creditCardCVV" maxlength="3">
             </div>
             <div class="payment__item__inner__wrapper">
               <label for="payment__item__date" class="payment__item__date__label payment__label">到期日</label>
               <div class="payment__item__date__wrapper">
                 <select name="payment__item__month" id="payment__item__month" class="payment__item__month">
                   <option value="" selected disabled class="payment__month">MM</option>
-                  <option value="" v-for="month in 12" :key="month">{{month}}</option>
+                  <option :value="month" v-for="month in 12" :key="month">{{month}}</option>
                 </select>
                 <select name="payment__item__year" id="payment__item__year" class="payment__item__year">
                   <option value="" selected disabled class="payment__year">YY</option>
-                  <option value="" v-for="year in 12" :key="year">{{year}}</option>
+                  <option :value="year" v-for="year in 12" :key="year">{{year}}</option>
                 </select>
               </div>
             </div>
@@ -91,22 +91,22 @@
           <div class="amount__title">小計</div>
           <div class="amount__inner__wrapper">
             <div class="amount__inner__item">
-              <span class="amount__inner__text">平日</span>
-              <span class="amount__inner__date">2夜</span>
+              <span class="amount__inner__text">總共</span>
+              <span class="amount__inner__date">{{countDate}}夜</span>
             </div>
-            <div class="amount__inner__item">
+            <!-- <div class="amount__inner__item">
               <span class="amount__inner__text">假日</span>
               <span class="amount__inner__date">0夜</span>
-            </div>
+            </div> -->
           </div>
         </div>
         <div class="amount__item">
           <div class="amount__title">消費金額</div>
-          <div class="amount__price">$5,400</div>
+          <div class="amount__price">{{totalPrice}}</div>
         </div>
         <router-link to="/confirm">
           <div class="order__button__wrapper">
-            <button class="order__button">預訂房間</button>
+            <button class="order__button" @click="bookingRoom">預訂房間</button>
           </div>
         </router-link>
         <div class="order__button__wrapper order__cancel__button__wrapper" @click.stop.prevent="cancelOrder">
@@ -123,15 +123,56 @@
 <script>
 import { mapState } from 'vuex'
 export default {
-  components: {
-    // Navbar,
+  data () {
+    return {
+      name: '',
+      phone: '',
+      email: '',
+      checkinDate: '',
+      checkoutDate: '',
+      creditCardName: '',
+      creditNumber1: '',
+      creditNumber2: '',
+      creditNumber3: '',
+      creditNumber4: '',
+      creditCardCVV: '',
+      expireMonth: '',
+      expireYear: '',
+      roomType: ''
+    }
   },
   computed: {
-    ...mapState(['orderViewIsChecked'])
+    ...mapState(['orderViewIsChecked', 'roomDetail']),
+    countDate: function () {
+      return this.dateDiff() || 0
+    },
+    totalPrice: function () {
+      return Number(this.countDate * 2700)
+    }
   },
   methods: {
     cancelOrder () {
       this.$store.commit('toggleOrderNonView')
+    },
+    dateDiff () {
+      const start = new Date(this.checkinDate)
+      const end = new Date(this.checkoutDate)
+      const startDate = Date.UTC(start.getFullYear(), start.getMonth(), start.getDate())
+      const endDate = Date.UTC(end.getFullYear(), end.getMonth(), end.getDate())
+      const day = 1000 * 60 * 60 * 24
+      return (endDate - startDate) / day
+    },
+    bookingRoom () {
+      this.$store.commit('afterBookingData', {
+        name: this.name,
+        phone: this.phone,
+        email: this.email,
+        checkinDate: this.checkinDate,
+        checkoutDate: this.checkoutDate,
+        countDate: this.countDate,
+        totalPrice: this.totalPrice,
+        roomType: this.roomType
+      })
     }
   }
 }
