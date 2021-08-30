@@ -13,12 +13,8 @@
           <div class="review__comment__item__middle">
             <div class="review__comment__item__description">{{comment.text}}</div>
           </div>
-          <div class="review__comment__item__bottom">
-            <div class="review__comment__item__tag">服務讚</div>
-            <div class="review__comment__item__tag">服務讚</div>
-            <div class="review__comment__item__tag">服務讚</div>
-            <div class="review__comment__item__tag">服務讚</div>
-            <div class="review__comment__item__tag">服務讚</div>
+          <div class="review__comment__item__bottom" >
+            <div class="review__comment__item__tag" v-for="(item, index) in comment.commentItem" :key="index">{{item}}</div>
           </div>
         </div>
       </div>
@@ -30,6 +26,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   data () {
     return {
@@ -38,21 +35,41 @@ export default {
           id: 1,
           name: 'y****mst',
           image: require('./../assets/image/commentStars.svg'),
-          text: '空間很大，住起來很舒服'
+          text: '空間很大，住起來很舒服',
+          commentItem: [
+            '服務讚', '設施讚', '衛生讚'
+          ]
         },
         {
           id: 2,
           name: 'ma***gglt',
           image: require('./../assets/image/commentStars.svg'),
-          text: '不是照騙，CP值很高，推推！'
+          text: '不是照騙，CP值很高，推推！',
+          commentItem: [
+            '服務讚', '安全讚'
+          ]
         },
         {
           id: 3,
           name: 'l****epq',
           image: require('./../assets/image/commentStars.svg'),
-          text: '服務人員很親切，距離車站只要5分鐘'
+          text: '服務人員很親切，距離車站只要5分鐘',
+          commentItem: [
+            '設施讚', '清潔讚', '清潔讚'
+          ]
         }
       ]
+    }
+  },
+  computed: {
+    ...mapState(['comment'])
+  },
+  created () {
+    this.addComment()
+  },
+  methods: {
+    addComment () {
+      this.commentAccount.push(this.comment)
     }
   }
 }
@@ -71,6 +88,9 @@ export default {
       line-height: 34px;
       font-weight: 400;
       color: #000;
+    }
+    &__cancel {
+      display: none;
     }
   }
   .review__comment {
@@ -138,6 +158,7 @@ export default {
       &__cancel {
         line-height: 40px;
         cursor: pointer;
+        display: block;
       }
     }
   }

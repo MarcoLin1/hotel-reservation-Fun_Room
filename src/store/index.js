@@ -20,7 +20,11 @@ export default new Vuex.Store({
       totalPrice: 0,
       roomType: ''
     },
-    itemName: ''
+    itemName: '',
+    comment: {
+      name: '',
+      text: ''
+    }
   },
   mutations: {
     toggleChecked (state) {
@@ -50,6 +54,9 @@ export default new Vuex.Store({
     },
     clickItem (state, item) {
       state.itemName = item
+    },
+    newComment (state, data) {
+      state.comment = data
     }
   },
   actions: {

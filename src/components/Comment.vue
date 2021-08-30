@@ -53,7 +53,10 @@
       </div>
     </div>
     <div class="comment__button__wrapper">
-      <button class="comment__button">確定留評</button>
+      <button class="comment__button" @click.stop.prevent="addNewComment">確定留評</button>
+    </div>
+    <div class="comment__button__wrapper">
+      <button class="comment__button" @click.stop.prevent="$router.go(-1)">取消</button>
     </div>
   </div>
 </template>
@@ -64,6 +67,7 @@ export default {
     return {
       comment: '',
       name: '',
+      commentItem: [],
       toggleIcon1: true,
       toggleIcon2: true,
       toggleIcon3: true,
@@ -78,11 +82,13 @@ export default {
   },
   methods: {
     buttonContent (text) {
-      if (this.comment) {
-        this.comment = this.comment + ', ' + text
-      } else {
-        this.comment += text
-      }
+      this.commentItem.push(text)
+      const tagItems = document.querySelectorAll('.comment__tag__item')
+      tagItems.forEach(tag => {
+        if (tag.innerText === text) {
+          tag.classList.toggle('checked__tag')
+        }
+      })
     },
     iconClick (number) {
       if (number === 1) {
@@ -96,6 +102,15 @@ export default {
       } else {
         this.toggleIcon5 = !this.toggleIcon5
       }
+    },
+    addNewComment () {
+      this.$store.commit('newComment', {
+        name: this.name,
+        text: this.comment,
+        image: require('./../assets/image/commentStars.svg'),
+        commentItem: this.commentItem
+      })
+      this.$router.push({ name: 'room-review' })
     }
   }
 }
@@ -208,14 +223,11 @@ export default {
         cursor: pointer;
       }
     }
+    &__tag__item:hover > &__tag {
+      color: #fff;
+    }
     &__tag {
       line-height: 28px;
-      &:hover {
-        color: #fff;
-      }
-      &:focus {
-        font-weight: bold;
-      }
     }
     &__button__wrapper {
       margin: 30px 0 30px 0;
@@ -229,6 +241,14 @@ export default {
       color: #fff;
       line-height: 40px;
     }
+  }
+
+  .checked__tag {
+    background-color: #000;
+  }
+
+  .checked__tag > .comment__tag {
+    color: #fff;
   }
 
   @media screen and (min-width: 756px) {

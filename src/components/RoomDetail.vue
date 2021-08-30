@@ -4,7 +4,7 @@
       <div class="room__detail__top__wrapper">
         <div class="room__detail__main__wrapper">
           <div class="room__detail__name__wrapper">
-            <div class="room__detail__name">{{itemName}}</div>
+            <div class="room__detail__name">{{itemName || 'Single Room'}} </div>
             <div class="room__detail__comments__wrapper">
               <router-link  to="/room/review" class="room__detail__comment">房客評價(128)</router-link>
               <div class="room__detail__comment__icons__wrapper">
