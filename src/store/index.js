@@ -19,14 +19,8 @@ export default new Vuex.Store({
       countDate: 0,
       totalPrice: 0,
       roomType: ''
-    }
-    // roomDetail: {
-    //   name: '',
-    //   email: '',
-    //   phone: '',
-    //   checkinDate: '',
-    //   checkoutDate: ''
-    // }
+    },
+    itemName: ''
   },
   mutations: {
     toggleChecked (state) {
@@ -38,7 +32,6 @@ export default new Vuex.Store({
     toggleOrderView (state, data) {
       state.orderViewIsChecked = true
       state.showContent = false
-      // state.roomDetail = data
     },
     toggleOrderNonView (state) {
       state.orderViewIsChecked = false
@@ -54,6 +47,9 @@ export default new Vuex.Store({
     },
     afterBookingData (state, data) {
       state.bookingData = data
+    },
+    clickItem (state, item) {
+      state.itemName = item
     }
   },
   actions: {

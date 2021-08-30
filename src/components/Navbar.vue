@@ -9,23 +9,8 @@
     </label>
     <div class="navbar__wrapper">
       <ul class="navbar__list">
-        <li class="navbar__item">
-          <router-link to="/room/detail" class="navbar__link">Single Room</router-link>
-        </li>
-        <li class="navbar__item">
-          <router-link to="/room/detail" class="navbar__link">Deluxe Single Room</router-link>
-        </li>
-        <li class="navbar__item">
-          <router-link to="/room/detail" class="navbar__link">Double Room</router-link>
-        </li>
-        <li class="navbar__item">
-          <router-link to="/room/detail" class="navbar__link">Deluxe Double Room</router-link>
-        </li>
-        <li class="navbar__item">
-          <router-link to="/room/detail" class="navbar__link">Twin Room</router-link>
-        </li>
-        <li class="navbar__item">
-          <router-link to="/room/detail" class="navbar__link">Deluxe Twin Room</router-link>
+        <li class="navbar__item" v-for="item in items" :key="item.id">
+          <div class="navbar__link" @click.stop.prevent="focusNavItem(item.title)">{{item.title}}</div>
         </li>
       </ul>
     </div>
@@ -36,6 +21,36 @@
 <script>
 
 export default {
+  data () {
+    return {
+      items: [
+        {
+          id: 1,
+          title: 'Single Room'
+        },
+        {
+          id: 2,
+          title: 'Deluxe Single Room'
+        },
+        {
+          id: 3,
+          title: 'Double Room'
+        },
+        {
+          id: 4,
+          title: 'Deluxe Double Room'
+        },
+        {
+          id: 5,
+          title: 'Twin Room'
+        },
+        {
+          id: 6,
+          title: 'Deluxe Twin Room'
+        }
+      ]
+    }
+  },
   methods: {
     toggleEvent () {
       const toggleCheckbox = document.querySelector('.navbar__toggle')
@@ -44,6 +59,10 @@ export default {
       } else {
         this.$store.commit('toggleChecked')
       }
+    },
+    focusNavItem (text) {
+      this.$store.commit('clickItem', text)
+      this.$router.push({ name: 'room-detail' })
     }
   }
 }
@@ -86,6 +105,7 @@ export default {
   &__link {
     color: #333;
     text-decoration: none;
+    cursor: pointer;
   }
   &__toggle:checked ~ &__wrapper {
     transform: scale(1, 1);
@@ -127,11 +147,9 @@ export default {
     position: absolute;
   }
   &__toggle:checked ~ &__toggle__hamburger &__hamburger::before {
-    background: #ffffff;
+    background: rgba(255, 255, 255, 0);
     content: "X";
     color: #333;
-    width: 13px;
-    height: 13px;
     top: -15px;
     font-size: 1.5rem
   }
