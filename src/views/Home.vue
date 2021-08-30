@@ -147,7 +147,7 @@ export default {
     position: relative;
   }
   &__slide__second__image {
-    background-image: url('./../assets/image/home_page_room_2.jpeg');
+    background-image: url('./../assets/image/room_1.jpg');
     background-position: center;
     background-size: cover;
     width: 100%;

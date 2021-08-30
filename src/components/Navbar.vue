@@ -1,7 +1,7 @@
 <template>
 <div class="nav__container">
   <div class="navbar__container">
-    <a href="/" class="navbar__brand">Fun Room</a>
+    <router-link :to="{name: 'home'}" class="navbar__brand">Fun Room</router-link>
     <input type="checkbox" class="navbar__toggle" id="navbar__toggle">
     <!-- 增加標籤 -->
     <label for="navbar__toggle" class="navbar__toggle__hamburger" @click="toggleEvent">
