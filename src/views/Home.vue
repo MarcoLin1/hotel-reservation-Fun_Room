@@ -1,5 +1,22 @@
 <template>
   <div class="home__page">
+    <div class="home__page__slider__container">
+      <div class="home__page__slides">
+        <div class="home__page__slide home__page__slide__first">
+          <div alt="" class="home__page__slide__first__image"></div>
+        </div>
+        <div class="home__page__slide home__page__slide__second">
+          <div alt="" class="home__page__slide__second__image"></div>
+        </div>
+        <div class="home__page__slide home__page__slide__third">
+          <div alt="" class="home__page__slide__third__image"></div>
+        </div>
+      </div>
+      <div class="home__page__navigation__manual">
+        <div class="home__page__manual up__button" @click.stop.prevent="sliderControll('up')">&lt;</div>
+        <div class="home__page__manual down__button" @click.stop.prevent="sliderControll('down')">&lt;</div>
+      </div>
+    </div>
     <Navbar />
       <div class="home__page__wrapper" v-if="isChecked">
       <div class="icons__wrapper">
@@ -26,10 +43,11 @@
         <div class="home__page__order__item home__page__order__item__last">
           <div class="home__page__order__price">$2,700</div>
           <div class="home__page__order__button__wrapper">
-            <router-link to="/room/detail" class="home__page__order__button">線上訂房</router-link>
+            <div class="home__page__order__button" @click="moveToRoomDetail('Single Room')">線上訂房</div>
           </div>
         </div>
       </div>
+
   </div>
   </div>
 </template>
@@ -38,8 +56,14 @@
 // @ is an alias to /src
 import Navbar from '@/components/Navbar.vue'
 import { mapState } from 'vuex'
+
 export default {
   name: 'Home',
+  data () {
+    return {
+      slideIndex: 0
+    }
+  },
   components: {
     Navbar
   },
@@ -50,24 +74,43 @@ export default {
     toggleEvent () {
       const toggleCheckbox = document.querySelector('.navbar__toggle')
       const homeWrapper = document.querySelector('.home__page__wrapper')
-      console.log(toggleCheckbox)
-      console.log(homeWrapper)
       if (!toggleCheckbox.checked) {
         homeWrapper.classList.add('disappear')
       } else {
         homeWrapper.classList.remove('disappear')
       }
+    },
+    sliderControll (direction) {
+      const sliderContainer = document.querySelector('.home__page__slider__container')
+      const slides = document.querySelector('.home__page__slides')
+      const slidesLength = slides.querySelectorAll('.home__page__slide').length
+      const sliderHeight = sliderContainer.clientHeight
+      if (direction === 'up') {
+        this.slideIndex++
+        if (this.slideIndex > slidesLength - 1) {
+          this.slideIndex = 0
+        }
+        slides.style.transform = `translateY(-${this.slideIndex * sliderHeight}px)`
+      }
+
+      if (direction === 'down') {
+        if (this.slideIndex <= 0) {
+          return
+        }
+        this.slideIndex--
+        slides.style.transform = `translateY(-${this.slideIndex * sliderHeight}px)`
+      }
+    },
+    moveToRoomDetail (text) {
+      this.$store.commit('clickItem', text)
+      this.$router.push({ name: 'room-detail' })
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-
 .home__page {
-  background-image: url('./../assets/image/homePage.jpg');
-  background-position: center;
-  background-size: cover;
   width: 100%;
   height: 100vh;
   position: relative;
@@ -77,6 +120,84 @@ export default {
   width: 100%;
 }
 
+.home__page {
+  &__slider__container {
+    position: absolute;
+    top: 0;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+  }
+  &__slides {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    transition: transform 0.5s ease-in;
+  }
+  &__slide {
+    height: 100%;
+  }
+  &__slide__first__image {
+    background-image: url('./../assets/image/home_page_room_1.jpeg');
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+  &__slide__second__image {
+    background-image: url('./../assets/image/home_page_room_2.jpeg');
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+  &__slide__third__image {
+    background-image: url('./../assets/image/homePage.jpg');
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+  &__navigation__manual {
+    position: relative;
+    top: 60%;
+    left: -45%;
+    display: grid;
+    grid-gap: 20px;
+    justify-content: center;
+    align-items: center;
+  }
+  &__manual {
+    background-color: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    transition: 0.8s;
+    &:hover {
+      background-color: #000;
+      color: #fff;
+    }
+  }
+}
+
+.up__button {
+  font-size: 8px;
+  transform: rotate(90deg);
+}
+
+.down__button {
+  font-size: 8px;
+  transform: rotate(270deg);
+}
+
 .icons__wrapper {
   position: relative;
   bottom: -80px;
@@ -84,6 +205,7 @@ export default {
   grid-template-rows: repeat(3, 1fr);
   grid-gap: 1rem;
   margin-left: 18px;
+  z-index: 99;
 }
 
 .icon {
@@ -115,6 +237,7 @@ export default {
     padding: 11px 15px 16px 18px;
     background-color: rgba(255, 255, 255, 0.38);
     backdrop-filter: blur(4.5px);
+    z-index: 99;
   }
   &__number {
     font-size: 36px;
@@ -158,6 +281,9 @@ export default {
   &__button {
     color: #ffffff;
     text-decoration: none;
+  }
+  &__button {
+    cursor: pointer;
   }
 }
 .disappear {
