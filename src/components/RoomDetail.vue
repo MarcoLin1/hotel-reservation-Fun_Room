@@ -375,6 +375,9 @@ export default {
     padding: 0 20px;
   }
   .room__detail {
+    &__wrapper {
+      max-width: 1038px;
+    }
     &__main__wrapper {
       margin-top: 20px;
     }
@@ -397,7 +400,7 @@ export default {
       display: none;
     }
     &__form__container {
-      width: 70%;
+      width: 50%;
       display: flex;
       justify-content: center;
       align-items: center;
